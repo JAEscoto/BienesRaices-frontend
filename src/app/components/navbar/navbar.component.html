@@ -1,0 +1,20 @@
+<section
+  class="flex items-center border-b border-gray-300 justify-between bg-sky-200"
+>
+  <div class="w-48">
+    <img src="assets/logo.png" alt="My App Logo" width="200px" />
+  </div>
+  <ul class="flex items-center">
+    <li class="mr-10 hover:cursor-pointer"><a routerLink="/">Home</a></li>
+    <li class="mr-10 hover:cursor-pointer"><a routerLink="/about">About</a></li>
+    <li class="mr-10 hover:cursor-pointer">
+      <a routerLink="/about">Services</a>
+    </li>
+    <li class="mr-10 hover:cursor-pointer"><a routerLink="/about">About</a></li>
+    <li class=""><a routerLink="/contact">Blog</a></li>
+  </ul>
+  <div class="flex mr-5">
+    <button mat-button (click)="goTo('/login')">Login</button>
+    <button class="ml-2" mat-button (click)="goTo('/register')">Register</button>
+  </div>
+</section>
