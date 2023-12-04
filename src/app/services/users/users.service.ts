@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import axiosClient from '../../../config/axios';
 import { Users } from '../../models/users';
 

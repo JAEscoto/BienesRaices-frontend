@@ -1,37 +1,19 @@
-<app-navbar></app-navbar>
+<div class="items-center justify-center align-middle bg-slate-100 h-screen">
+  <app-navbar></app-navbar>
 
-<div class="items-center justify-center align-middle">
   <div class="map-container">
     <div class="map-frame">
       <div id="map"></div>
     </div>
   </div>
 
-  <section>
-    <div class="flex">
-      <div class="flex items-center w-2/12">
-        <div class="w-full text-right">
-          <button class="p-3 rounded-full bg-white border border-gray-100 shadow-md mr-5">
-            <mat-icon>keyboard_arrow_left</mat-icon>
-          </button>
-        </div>
-      </div>
-      <div id="slideContent" class="w-full">
-        <ul id="slider" class="flex w-full border border-red-600">
-          <li>
-
-          </li>
-        </ul>
-      </div>
-      <div class="flex w-2/12 items-center">
-        <div class="w-full">
-          <button class="p-3 rounded-full bg-white border border-gray-100 shadow-md ml-5">
-            <mat-icon>keyboard_arrow_right</mat-icon>
-          </button>
-        </div>
-      </div>
-    </div>
+  <section class="flex justify-between">
+    <button (click)="obtenerPropiedades()">Propiedades</button>
+    <button (click)="obtenerPrices()">Precios</button>
+    <button (click)="obtenerCategories()">Categories</button>
+    <button (click)="obtenerMessages()">Messages</button>
   </section>
+
 </div>
 
 

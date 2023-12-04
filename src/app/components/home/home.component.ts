@@ -2,10 +2,14 @@ import { Component, Input, OnInit   } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
 
-
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import { icon, Marker } from 'leaflet';
+
+import { PropertiesService } from './../../services/properties/properties.service';
+import { PricesService } from '../../services/prices/prices.service';
+import { CategoriesService } from '../../services/categories/categories.service';
+import { MessagesService } from '../../services/messages/messages.service';
 
 export const DEFAULT_LAT = 15.53026;
 export const DEFAULT_LON =  -88.03195;
@@ -21,13 +25,22 @@ const shadowUrl = 'assets/marker-shadow.png';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit{private map:any; @Input() lat: number = DEFAULT_LAT; @Input() lon: number = DEFAULT_LON; @Input() titulo: string = TITULO ;
+export class HomeComponent implements OnInit{
+  private map:any;
+  @Input() lat: number = DEFAULT_LAT;
+  @Input() lon: number = DEFAULT_LON;
+  @Input() titulo: string = TITULO ;
 
-  constructor() {}
+  constructor(
+    private propertiesServices: PropertiesService,
+    private pricesServices: PricesService,
+    private categoriesServices: CategoriesService,
+    private messagesServices: MessagesService
+    ) {}
 
   ngOnInit(): void {
     this.initMap();
-  }
+    }
 
   private initMap(): void {
     //configuración del mapa
@@ -82,5 +95,21 @@ export class HomeComponent implements OnInit{private map:any; @Input() lat: numb
       ]
     }).addTo(this.map);
       tiles.addTo(this.map);
+  }
+
+  obtenerPropiedades(){
+    this.propertiesServices.getProperties()
+  }
+
+  obtenerPrices(){
+    this.pricesServices.getPrices()
+  }
+
+  obtenerCategories(){
+    this.categoriesServices.getCategories()
+  }
+
+  obtenerMessages(){
+    this.messagesServices.getMessages()
   }
 }
