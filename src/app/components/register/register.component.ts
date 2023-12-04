@@ -16,6 +16,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { Router } from '@angular/router';
 
+import { UsersService } from '../../services/users/users.service';
+import { Users } from '../../models/users';
+
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -39,7 +42,7 @@ export class RegisterComponent {
   email = new FormControl('', [Validators.required, Validators.email]);
   hide = true;
 
-  constructor(private fb: FormBuilder, private router: Router){
+  constructor(private fb: FormBuilder, private router: Router, private usersService: UsersService){
     this.loginForm = this.fb.group({
       nombre: new FormControl('', [Validators.required]),
       primerApellido: new FormControl('', [Validators.required]),
@@ -53,18 +56,22 @@ export class RegisterComponent {
   }
 
   onSubmit(){
-    if (this.loginForm.valid) {
-
+    if (this.loginForm.valid && (this.loginForm.get('password')?.value === this.loginForm.get('repPassword')?.value)) {
+      const user: Users = {
+        nombre: this.loginForm.get('nombre')?.value,
+        primerApellido: this.loginForm.get('primerApellido')?.value,
+        segundoApellido: this.loginForm.get('segundoApellido')?.value,
+        empresa: this.loginForm.get('empresa')?.value,
+        fechaNacimiento: this.loginForm.get('fechaNacimiento')?.value,
+        password: this.loginForm.get('password')?.value,
+        email: this.loginForm.get('email')?.value,
+      }
+      this.usersService.postUser(user);
     } else {
-      console.log('EL email o el password son incorrectos');
+      console.log(this.loginForm)
+      console.log('Algunos datos son incorrectos. Se le recomienda revisar los password y el email');
     }
   }
-
-  // validatePassword(){
-  //   if () {
-
-  //   }
-  // }
 
   goTo(path: string) {
     this.router.navigate([`${path}`]);

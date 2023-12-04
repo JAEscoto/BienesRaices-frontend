@@ -14,6 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 
+import { UsersService } from '../../services/users/users.service';
+
 @Component({
   selector: 'app-login',
   standalone: true,

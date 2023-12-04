@@ -1,0 +1,19 @@
+.map-container {
+  display: fixed;
+  /* position: absolute; */
+  width: 80vw;
+  height: 40vh;
+  margin-top: 2%;
+  margin-left: 10%;
+  /* justify-items: center;
+  align-items: center; */
+}
+
+.map-frame {
+  border: 2px solid black;
+  height: 100%;
+}
+
+#map {
+  height: 100%;
+}

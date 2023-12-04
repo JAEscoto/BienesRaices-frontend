@@ -1,74 +1,76 @@
-<div class="flex items-center justify-center h-screen bg-slate-100">
-  <mat-card class="flex h-auto w-3/4 md:w-5/12 lg:w-1/4">
-    <mat-card-header class="justify-center items-center">
-      <mat-card-title class="text-3xl">Bienes <span class="text-fuchsia-800">Raices</span></mat-card-title>
-      <mat-card-subtitle class="flex justify-center items-center">Registro</mat-card-subtitle>
-    </mat-card-header>
+<div class="bg-slate-100 h-screen overflow-hidden">
+  <div class="absolute mt-2 ml-2">
+    <button mat-raised-button color="warn" class="hover:bg-red-900" (click)="goTo('/')" >Home</button>
+  </div>
+  <div class="flex mt-2 mr-2 justify-end">
+  <button mat-raised-button color="primary" class="p-2 hover:bg-violet-900" (click)="goTo('/login')">¿Ya tienes una cuenta?</button>
+  </div>
+  <div class="flex items-center justify-center h-full max-h-screen-md -m-10 ">
+    <mat-card class="flex h-auto w-3/4 md:w-5/12 lg:w-1/4">
+      <mat-card-header class="justify-center items-center">
+        <mat-card-title class="text-3xl">Bienes <span class="text-fuchsia-800">Raices</span></mat-card-title>
+        <mat-card-subtitle class="flex justify-center items-center">Registro</mat-card-subtitle>
+      </mat-card-header>
 
-    <mat-card-content class="mt-10">
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <mat-form-field class="w-full">
-          <mat-label>Nombre</mat-label>
-          <input matInput formControlName="nombre"/>
-          <mat-icon matSuffix>person</mat-icon>
-        </mat-form-field>
+      <mat-card-content class="mt-10">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <mat-form-field class="w-full">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre"/>
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
 
-        <mat-form-field class="w-full">
-          <mat-label>Primer Apellido</mat-label>
-          <input matInput formControlName="nombre"/>
-          <!-- <mat-icon matSuffix>person</mat-icon> -->
-        </mat-form-field>
+          <mat-form-field class="w-full">
+            <mat-label>Primer Apellido</mat-label>
+            <input matInput formControlName="primerApellido"/>
+            <!-- <mat-icon matSuffix>person</mat-icon> -->
+          </mat-form-field>
 
-        <mat-form-field class="w-full">
-          <mat-label>Segundo Apellido</mat-label>
-          <input matInput formControlName="nombre"/>
-          <!-- <mat-icon matSuffix>person</mat-icon> -->
-        </mat-form-field>
+          <mat-form-field class="w-full">
+            <mat-label>Segundo Apellido</mat-label>
+            <input matInput formControlName="segundoApellido"/>
+            <!-- <mat-icon matSuffix>person</mat-icon> -->
+          </mat-form-field>
 
-        <mat-form-field class="w-full">
-          <mat-label>Empresa</mat-label>
-          <input matInput formControlName="nombre"/>
-          <mat-icon matSuffix>work</mat-icon>
-        </mat-form-field>
+          <mat-form-field class="w-full">
+            <mat-label>Empresa</mat-label>
+            <input matInput formControlName="empresa"/>
+            <mat-icon matSuffix>work</mat-icon>
+          </mat-form-field>
 
-        <mat-form-field class="w-full">
-          <mat-label>Fecha de Nacimiento</mat-label>
-          <input matInput formControlName="fechaNacimiento" [matDatepicker]="picker">
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+          <mat-form-field class="w-full">
+            <mat-label>Fecha de Nacimiento</mat-label>
+            <input matInput formControlName="fechaNacimiento" [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
 
-        <mat-form-field class="w-full">
-          <mat-label>Password</mat-label>
-          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required/>
-          <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-          </button> -->
-          <mat-icon matSuffix>lock</mat-icon>
-        </mat-form-field>
+          <mat-form-field class="w-full">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required/>
+            <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button> -->
+            <mat-icon matSuffix>lock</mat-icon>
+          </mat-form-field>
 
-        <mat-form-field class="w-full">
-          <mat-label>Repetir Password</mat-label>
-          <input matInput formControlName="repPassword" [type]="hide ? 'password' : 'text'" required/>
-          <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-          </button> -->
-        </mat-form-field>
+          <mat-form-field class="w-full">
+            <mat-label>Repetir Password</mat-label>
+            <input matInput formControlName="repPassword" [type]="hide ? 'password' : 'text'" required/>
+            <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button> -->
+          </mat-form-field>
 
-        <mat-form-field class="w-full">
-          <mat-label>Email</mat-label>
-          <input matInput [formControl]="email"/>
-          <mat-icon matSuffix>alternate_email</mat-icon>
-        </mat-form-field>
-
-
-        <ul class="flex align-middle justify-between mb-1">
-          <li class="cursor-pointer hover:text-cyan-500"><a (click)="goTo('/login')">¿Ya tienes una cuenta?</a></li>
-          <li class="cursor-pointer hover:text-red-500"><a (click)="goTo('/')">Home</a></li>
-        </ul>
-        <button mat-button class="bg-sky-200 h-10 w-full ">Registrar</button>
-      </form>
-    </mat-card-content>
-  </mat-card>
+          <mat-form-field class="w-full">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email"/>
+            <mat-icon matSuffix>alternate_email</mat-icon>
+          </mat-form-field>
+          <button mat-button class="bg-sky-200 h-10 w-full hover:bg-blue-500 transition-all">Registrar</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
