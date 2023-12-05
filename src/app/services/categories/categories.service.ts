@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import axiosClient from '../../../config/axios';
-import { Categories } from '../../models/categories';
+import { Observable, from, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,12 @@ export class CategoriesService {
 
   constructor() { }
 
-  async getCategories(){
-    const res = await axiosClient.get('categories');
-    console.log(res)
+  getCategories(): Observable<any> {
+    return from(axiosClient.get('/categories')).pipe(
+      catchError((error) => {
+        console.error('Error al obtener las categorías', error);
+        return throwError(error);
+      })
+    );
   }
 }

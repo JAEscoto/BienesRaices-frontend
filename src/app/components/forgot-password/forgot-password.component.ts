@@ -13,6 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { UsersService } from '../../services/users/users.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -31,21 +32,18 @@ import { Router } from '@angular/router';
 })
 
 export class ForgotPasswordComponent {
+  emails: string = '';
   loginForm: FormGroup;
   email = new FormControl('', [Validators.required, Validators.email]);
 
-  constructor(private fb: FormBuilder, private router: Router){
+  constructor(private fb: FormBuilder, private router: Router, private userServices: UsersService){
     this.loginForm = this.fb.group({
       email: new FormControl('', [Validators.required, Validators.email]),
     })
   }
 
   onSubmit(){
-    if (this.loginForm.valid) {
-
-    } else {
-      console.log('EL email o el password son incorrectos');
-    }
+    this.userServices.resetPassword(this.emails);
   }
 
   goTo(path: string) {

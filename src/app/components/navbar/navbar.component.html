@@ -4,17 +4,48 @@
   <div class="w-48">
     <img src="assets/logo.png" alt="My App Logo" width="200px" />
   </div>
-  <ul class="flex items-center">
-    <li class="mr-10 hover:cursor-pointer"><a routerLink="/">Home</a></li>
-    <li class="mr-10 hover:cursor-pointer"><a routerLink="/about">About</a></li>
-    <li class="mr-10 hover:cursor-pointer">
-      <a routerLink="/about">Services</a>
-    </li>
-    <li class="mr-10 hover:cursor-pointer"><a routerLink="/about">About</a></li>
-    <li class=""><a routerLink="/contact">Blog</a></li>
-  </ul>
   <div class="flex mr-5">
-    <button mat-button (click)="goTo('/login')">Login</button>
-    <button class="ml-2" mat-button (click)="goTo('/register')">Register</button>
+    <button class="hover:bg-sky-200" mat-button (click)="goToUser('/login')">Login</button>
+    <button class="ml-2 hover:bg-sky-200" mat-button (click)="goToUser('/register')">Register</button>
   </div>
+</section>
+
+<section>
+    <div class="bg-sky-400 w-full h-20 justify-between">
+      <div class="flex">
+        <div class="flex container mx-auto mt-6 ml-5">
+          <nav class="flex gap-4">
+            <button class="text-sm font-medium uppercase hover:bg-sky-500" mat-button (click)="getPropertiesByCategory('6568146f4a017cb73a03911f')">Casas</button>
+            <button class="text-sm font-medium uppercase hover:bg-sky-500" mat-button (click)="getPropertiesByCategory('656ccbad02436fb852bef334')">Apartamentos</button>
+            <button class="text-sm font-medium uppercase hover:bg-sky-500" mat-button (click)="getPropertiesByCategory('656ccc0102436fb852bef33e')">Cabañas</button>
+            <button class="text-sm font-medium uppercase hover:bg-sky-500" mat-button (click)="getPropertiesByCategory('656ccc1602436fb852bef342')">Edificios</button>
+            <button class="text-sm font-medium uppercase hover:bg-sky-500" mat-button (click)="getPropertiesByCategory('656ccbe302436fb852bef33b')">Bodegas</button>
+            <button class="text-sm font-medium uppercase hover:bg-sky-500" mat-button (click)="getPropertiesByCategory('65684aa9164eca8bcf3bc55e')">Terrenos</button>
+          </nav>
+        </div>
+        <div class="ml-auto w-2/5 mt-5 h-9 mr-1">
+          <form (ngSubmit)="goTo('/busqueda', searchForm); false" #searchForm="ngForm">
+            <div class="relative">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                    </svg>
+                </div>
+
+                <input
+                  [(ngModel)]="titulo"
+                  name="search"
+                  type="search"
+                  id="search"
+                  class="block h-10 w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500
+                   dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Buscar Propiedades"
+                  required
+                >
+                <button type="submit" class="h-8 text-white absolute end-2.5 bottom-1 right-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buscar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 </section>

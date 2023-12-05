@@ -1,15 +1,20 @@
 import { Component, Input, OnInit   } from '@angular/core';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import { icon, Marker } from 'leaflet';
 
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
+import { Router } from '@angular/router';
+
 import { PropertiesService } from './../../services/properties/properties.service';
 import { PricesService } from '../../services/prices/prices.service';
 import { CategoriesService } from '../../services/categories/categories.service';
 import { MessagesService } from '../../services/messages/messages.service';
+
 
 export const DEFAULT_LAT = 15.53026;
 export const DEFAULT_LON =  -88.03195;
@@ -21,11 +26,16 @@ const shadowUrl = 'assets/marker-shadow.png';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NavbarComponent, MatIconModule],
+  imports: [NavbarComponent, MatIconModule, FooterComponent, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit{
+  prices: any[] = [];
+  categories: any[] = [];
+  propertiesEnVenta: any[] = [];
+  propertiesEnRenta: any[] = [];
+
   private map:any;
   @Input() lat: number = DEFAULT_LAT;
   @Input() lon: number = DEFAULT_LON;
@@ -35,11 +45,15 @@ export class HomeComponent implements OnInit{
     private propertiesServices: PropertiesService,
     private pricesServices: PricesService,
     private categoriesServices: CategoriesService,
-    private messagesServices: MessagesService
+    private messagesServices: MessagesService,
+    private router: Router
     ) {}
 
   ngOnInit(): void {
     this.initMap();
+    this.obtenerPrices();
+    this.obtenerCategories();
+    this.obtenerPropiedades()
     }
 
   private initMap(): void {
@@ -97,19 +111,41 @@ export class HomeComponent implements OnInit{
       tiles.addTo(this.map);
   }
 
-  obtenerPropiedades(){
-    this.propertiesServices.getProperties()
+  async obtenerPropiedades(){
+    try {
+      // Obtener propiedades en venta
+      this.propertiesEnVenta = await this.propertiesServices.getPropertiesByStatus(true);
+
+      // Obtener propiedades en renta
+      this.propertiesEnRenta = await this.propertiesServices.getPropertiesByStatus(false);
+    } catch (error) {
+      console.error('Error al obtener propiedades', error);
+    }
   }
 
-  obtenerPrices(){
-    this.pricesServices.getPrices()
+  obtenerPrices() {
+    this.pricesServices.getPrices().subscribe(
+      (res) => {
+        this.prices = res.data;
+      },
+      (error) => {
+        console.error('Error al obtener los precios');
+      }
+    );
   }
 
-  obtenerCategories(){
-    this.categoriesServices.getCategories()
+  obtenerCategories() {
+    this.categoriesServices.getCategories().subscribe(
+      (res) => {
+        this.categories = res.data;
+      },
+      (error) => {
+        console.error('Error al obtener las categorias');
+      }
+    );
   }
 
-  obtenerMessages(){
-    this.messagesServices.getMessages()
+  goTo(path: string) {
+    this.router.navigate([`${path}`]);
   }
 }

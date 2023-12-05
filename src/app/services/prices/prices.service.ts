@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import axiosClient from '../../../config/axios';
-import { Prices } from '../../models/prices';
-import axios from 'axios';
+import { Observable, from, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +10,12 @@ export class PricesService {
 
   constructor() { }
 
-  async getPrices(){
-    try {
-      const res = await axiosClient.get('/prices');
-      console.log(res)
-    } catch (error) {
-      console.error("Error al obtener los precios")
-    }
+  getPrices(): Observable<any> {
+    return from(axiosClient.get('/prices')).pipe(
+      catchError((error) => {
+        console.error('Error al obtener los precios', error);
+        return throwError(error);
+      })
+    );
   }
 }

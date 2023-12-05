@@ -1,20 +1,68 @@
-<div class="items-center justify-center align-middle bg-slate-100 h-screen">
-  <app-navbar></app-navbar>
+<div class="items-center justify-center align-middle bg-indigo-50 min-h-screen">
 
-  <div class="map-container">
-    <div class="map-frame">
-      <div id="map"></div>
-    </div>
-  </div>
-
-  <section class="flex justify-between">
-    <button (click)="obtenerPropiedades()">Propiedades</button>
-    <button (click)="obtenerPrices()">Precios</button>
-    <button (click)="obtenerCategories()">Categories</button>
-    <button (click)="obtenerMessages()">Messages</button>
+  <section>
+    <app-navbar></app-navbar>
   </section>
 
+  <section>
+    <div class="flex relative justify-center text-3xl mt-5">
+      <p>Mapa de Propiedades</p>
+    </div>
+    <div class="flex relative justify-center">
+      <div class="flex">
+        <div class="ml-3">
+          <label for="default" class="block text-sm font-medium text-gray-900 dark:text-black text-center">Precio</label>
+          <select id="default" class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 dark:bg-gray-100 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 h-7">
+            <option value="">--Seleccione un precio--</option>
+            <option *ngFor="let price of prices" [value]="price.id">{{ price.rango }}</option>
+          </select>
+        </div>
+        <div class="ml-3">
+          <label for="default" class="block text-sm font-medium text-gray-900 dark:text-black text-center">Categoria</label>
+          <select id="default" class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 dark:bg-gray-100 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 h-7">
+            <option value="">--Seleccione una categoria--</option>
+            <option *ngFor="let category of categories" [value]="category.id">{{ category.nombre }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="map-container">
+      <div class="map-frame">
+        <div id="map"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="flex relative justify-center mt-5">
+      <p class="text-3xl">Propiedades en Venta</p>
+    </div>
+    <div class="flex border border-red-300 h-80 w-4/5 ml-auto align-middle mr-auto ">
+      <div *ngFor="let property of propertiesEnVenta" class="border border-yellow-500 p-3 m-3">
+        <h4>{{ property.title }}</h4>
+        <p>{{ property.description }}</p>
+        <!-- Otros detalles de la propiedad -->
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="flex relative justify-center mt-5">
+      <p class="text-3xl">Propiedades en Renta</p>
+    </div>
+    <div class="flex border border-red-300 h-80 w-4/5 ml-auto align-middle mr-auto ">
+      <div *ngFor="let property of propertiesEnRenta" class="border border-yellow-500 p-3 m-3">
+        <h4>{{ property.title }}</h4>
+        <p>{{ property.description }}</p>
+        <!-- Otros detalles de la propiedad -->
+      </div>
+    </div>
+  </section>
+
+  <section class="relative bottom-0 w-full">
+    <app-footer></app-footer>
+  </section>
 </div>
-
-
-

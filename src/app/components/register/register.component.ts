@@ -14,10 +14,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { UsersService } from '../../services/users/users.service';
 import { Users } from '../../models/users';
+import { SnackbarService } from '../../services/snackbar/snackbar.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -31,7 +34,8 @@ import { Users } from '../../models/users';
     MatIconModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSnackBarModule
   ],
   templateUrl: './register.component.html',
   styleUrl: '../../../styles.css'
@@ -41,8 +45,14 @@ export class RegisterComponent {
   loginForm: FormGroup;
   email = new FormControl('', [Validators.required, Validators.email]);
   hide = true;
+  errorMessage: string = '';
 
-  constructor(private fb: FormBuilder, private router: Router, private usersService: UsersService){
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private usersService: UsersService,
+    private snackBarServices: SnackbarService
+      ){
     this.loginForm = this.fb.group({
       nombre: new FormControl('', [Validators.required]),
       primerApellido: new FormControl('', [Validators.required]),
@@ -67,9 +77,10 @@ export class RegisterComponent {
         email: this.loginForm.get('email')?.value,
       }
       this.usersService.postUser(user);
+      this.router.navigate(['/aviso-confirmacion']);
     } else {
-      console.log(this.loginForm)
       console.log('Algunos datos son incorrectos. Se le recomienda revisar los password y el email');
+      this.snackBarServices.mostrarError('Error al registrarse, porfavor verifique que todos los campos esten correctos.');
     }
   }
 
