@@ -7,6 +7,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
 import { ConfirmarCuentaComponent } from './components/confirmar-cuenta/confirmar-cuenta.component';
 import { AvisoConfirmacionComponent } from './components/aviso-confirmacion/aviso-confirmacion.component';
+import { AgregarPropiedadComponent } from './components/agregar-propiedad/agregar-propiedad.component';
 
 export const routes: Routes = [
   {path: '', title: 'Bienvendio', component: HomeComponent},
@@ -15,5 +16,6 @@ export const routes: Routes = [
   {path: 'forgotPassword', title: 'Olivdo el password', component: ForgotPasswordComponent},
   {path: 'busqueda', title: 'Buscando Propiedad', component: BusquedaComponent},
   {path: 'confirmar-cuenta/:token', component: ConfirmarCuentaComponent},
-  {path: 'aviso-confirmacion', component: AvisoConfirmacionComponent}
+  {path: 'aviso-confirmacion', component: AvisoConfirmacionComponent},
+  {path: 'agregar-propiedad', component: AgregarPropiedadComponent},
 ];

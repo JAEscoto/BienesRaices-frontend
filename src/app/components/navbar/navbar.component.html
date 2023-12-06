@@ -4,9 +4,13 @@
   <div class="w-48">
     <img src="assets/logo.png" alt="My App Logo" width="200px" />
   </div>
-  <div class="flex mr-5">
+  <div *ngIf="!token" class="flex mr-5">
     <button class="hover:bg-sky-200" mat-button (click)="goToUser('/login')">Login</button>
     <button class="ml-2 hover:bg-sky-200" mat-button (click)="goToUser('/register')">Register</button>
+  </div>
+  <div *ngIf="token" class="flex mr-5">
+    <mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+    <button class="text-sm font-medium uppercase hover:bg-sky-500" mat-button (click)="logout()">Cerrar sesion</button>
   </div>
 </section>
 

@@ -1,12 +1,8 @@
 .map-container {
   display: fixed;
-  /* position: ; */
   width: 80%;
   height: 50vh;
-  /* margin-top: 1%; */
   margin-left: 10%;
-  /* justify-items: center;
-  align-items: center; */
 }
 
 .map-frame {

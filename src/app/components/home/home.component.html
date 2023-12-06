@@ -8,24 +8,6 @@
     <div class="flex relative justify-center text-3xl mt-5">
       <p>Mapa de Propiedades</p>
     </div>
-    <div class="flex relative justify-center">
-      <div class="flex">
-        <div class="ml-3">
-          <label for="default" class="block text-sm font-medium text-gray-900 dark:text-black text-center">Precio</label>
-          <select id="default" class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 dark:bg-gray-100 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 h-7">
-            <option value="">--Seleccione un precio--</option>
-            <option *ngFor="let price of prices" [value]="price.id">{{ price.rango }}</option>
-          </select>
-        </div>
-        <div class="ml-3">
-          <label for="default" class="block text-sm font-medium text-gray-900 dark:text-black text-center">Categoria</label>
-          <select id="default" class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 dark:bg-gray-100 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 h-7">
-            <option value="">--Seleccione una categoria--</option>
-            <option *ngFor="let category of categories" [value]="category.id">{{ category.nombre }}</option>
-          </select>
-        </div>
-      </div>
-    </div>
   </section>
 
   <section>
@@ -44,7 +26,6 @@
       <div *ngFor="let property of propertiesEnVenta" class="border border-yellow-500 p-3 m-3">
         <h4>{{ property.title }}</h4>
         <p>{{ property.description }}</p>
-        <!-- Otros detalles de la propiedad -->
       </div>
     </div>
   </section>
@@ -57,7 +38,6 @@
       <div *ngFor="let property of propertiesEnRenta" class="border border-yellow-500 p-3 m-3">
         <h4>{{ property.title }}</h4>
         <p>{{ property.description }}</p>
-        <!-- Otros detalles de la propiedad -->
       </div>
     </div>
   </section>

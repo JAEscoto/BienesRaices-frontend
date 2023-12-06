@@ -7,15 +7,15 @@ export class Properties{
   estacionamiento: Boolean;
   wc: Number;
   calle: string;
-  latitud: string;
-  longitud: string;
-  imagen: Buffer;
+  latitud: number;
+  longitud: number;
+  imagen: string;
   publicado: Boolean;
   enVenta: Boolean;
   categoriaId: string;
   precioId: string;
 
-  constructor(userId: string, titulo: string, descripcion: string, habitaciones: Number, estacionamiento: Boolean, wc: Number, calle: string, latitud: string, longitud: string, imagen: Buffer, publicado: boolean, enVenta: Boolean, categoriaId: string, precioId: string){
+  constructor(userId: string, titulo: string, descripcion: string, habitaciones: Number, estacionamiento: Boolean, wc: Number, calle: string, latitud: number, longitud: number, imagen: string, publicado: boolean, enVenta: Boolean, categoriaId: string, precioId: string){
     this.userId = userId;
     this.titulo = titulo;
     this.descripcion = descripcion;

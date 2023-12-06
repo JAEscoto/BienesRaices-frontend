@@ -21,46 +21,14 @@
           </mat-form-field>
 
           <mat-form-field class="w-full">
-            <mat-label>Primer Apellido</mat-label>
-            <input matInput formControlName="primerApellido"/>
-            <!-- <mat-icon matSuffix>person</mat-icon> -->
-          </mat-form-field>
-
-          <mat-form-field class="w-full">
-            <mat-label>Segundo Apellido</mat-label>
-            <input matInput formControlName="segundoApellido"/>
-            <!-- <mat-icon matSuffix>person</mat-icon> -->
-          </mat-form-field>
-
-          <mat-form-field class="w-full">
-            <mat-label>Empresa</mat-label>
-            <input matInput formControlName="empresa"/>
-            <mat-icon matSuffix>work</mat-icon>
-          </mat-form-field>
-
-          <mat-form-field class="w-full">
-            <mat-label>Fecha de Nacimiento</mat-label>
-            <input matInput formControlName="fechaNacimiento" [matDatepicker]="picker">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-          <mat-form-field class="w-full">
             <mat-label>Password</mat-label>
             <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required/>
-            <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-            </button> -->
             <mat-icon matSuffix>lock</mat-icon>
           </mat-form-field>
 
           <mat-form-field class="w-full">
             <mat-label>Repetir Password</mat-label>
             <input matInput formControlName="repPassword" [type]="hide ? 'password' : 'text'" required/>
-            <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-            </button> -->
           </mat-form-field>
 
           <mat-form-field class="w-full">
@@ -75,8 +43,3 @@
   </div>
 </div>
 
-<!-- <ng-container [ngIf]="snackbarService">
-  <div>
-    Puedes agregar aquí el componente del Snackbar si lo necesitas
-  </div>
-</ng-container> -->

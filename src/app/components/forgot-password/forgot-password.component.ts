@@ -32,21 +32,18 @@ import { UsersService } from '../../services/users/users.service';
 })
 
 export class ForgotPasswordComponent {
-  emails: string = '';
-  loginForm: FormGroup;
-  email = new FormControl('', [Validators.required, Validators.email]);
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email])
+  });
 
-  constructor(private fb: FormBuilder, private router: Router, private userServices: UsersService){
-    this.loginForm = this.fb.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
-    })
-  }
+  constructor(private fb: FormBuilder, private router: Router, private userServices: UsersService) { }
 
   onSubmit(){
-    this.userServices.resetPassword(this.emails);
+    this.userServices.resetPassword(this.loginForm.get('email')?.value);
   }
 
   goTo(path: string) {
     this.router.navigate([`${path}`]);
   }
 }
+

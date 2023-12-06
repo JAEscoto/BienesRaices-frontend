@@ -13,24 +13,29 @@
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <mat-form-field class="w-full">
             <mat-label>Email</mat-label>
-            <input matInput [formControl]="email"/>
+            <input matInput formControlName="email"/>
             <mat-icon matSuffix>alternate_email</mat-icon>
           </mat-form-field>
 
           <mat-form-field class="w-full mt-5">
             <mat-label>Password</mat-label>
             <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required/>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <button mat-icon-button matSuffix (click)="showPassword($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
             </button>
           </mat-form-field>
-          <ul class="flex align-middle justify-between mb-1">
-            <li class="cursor-pointer hover:text-cyan-500"><a (click)="goTo('/register')">Registrarse</a></li>
-            <!-- <li class="cursor-pointer hover:text-cyan-500"><a (click)="goTo('/forgotPassword')">Olvide el password</a></li> -->
-            <!-- <li class="cursor-pointer hover:text-red-500"><a (click)="goTo('/')">Home</a></li> -->
-          </ul>
-          <button mat-button class="bg-sky-200 h-10 w-full ">Ingresar</button>
+
+          <div *ngIf="error" style="text-align: center; color: red;">
+            <span>{{ errorMessage }}</span>
+          </div>
+
+          <button mat-button class="bg-sky-200 h-10 w-full">Ingresar</button>
         </form>
+        <ul class="flex align-middle justify-between mt-3">
+          <li class="cursor-pointer hover:text-cyan-500"><a (click)="goTo('/register')">Registrarse</a></li>
+          <li class="cursor-pointer hover:text-cyan-500"><a (click)="goTo('/forgotPassword')">Olvide el password</a></li>
+          <!-- <li class="cursor-pointer hover:text-red-500"><a (click)="goTo('/')">Home</a></li> -->
+        </ul>
       </mat-card-content>
     </mat-card>
   </div>

@@ -55,10 +55,6 @@ export class RegisterComponent {
       ){
     this.loginForm = this.fb.group({
       nombre: new FormControl('', [Validators.required]),
-      primerApellido: new FormControl('', [Validators.required]),
-      segundoApellido: new FormControl('', [Validators.required]),
-      empresa: new FormControl(''),
-      fechaNacimiento: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
       repPassword: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -69,9 +65,6 @@ export class RegisterComponent {
     if (this.loginForm.valid && (this.loginForm.get('password')?.value === this.loginForm.get('repPassword')?.value)) {
       const user: Users = {
         nombre: this.loginForm.get('nombre')?.value,
-        primerApellido: this.loginForm.get('primerApellido')?.value,
-        segundoApellido: this.loginForm.get('segundoApellido')?.value,
-        empresa: this.loginForm.get('empresa')?.value,
         fechaNacimiento: this.loginForm.get('fechaNacimiento')?.value,
         password: this.loginForm.get('password')?.value,
         email: this.loginForm.get('email')?.value,

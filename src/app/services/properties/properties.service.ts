@@ -42,12 +42,12 @@ export class PropertiesService {
     );
   }
 
-  async postProperties(){
+  async postProperties(data: any) {
     try {
-      const res = await axiosClient.patch('/properties')
-      console.log(res)
+      const res = await axiosClient.post('/properties', data);
+      console.log(res);
     } catch (error) {
-      console.error("Error al postear la propiedad: ", error)
+      console.error('Error al postear la propiedad: ', error);
     }
   }
 

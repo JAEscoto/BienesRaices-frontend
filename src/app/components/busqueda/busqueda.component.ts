@@ -2,14 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute,  } from '@angular/router';
 import { FormsModule} from '@angular/forms';
 
-
-
 import { PropertiesService } from '../../services/properties/properties.service';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
-
-
 
 @Component({
   selector: 'app-busqueda',
